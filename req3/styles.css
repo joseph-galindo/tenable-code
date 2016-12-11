@@ -1,0 +1,26 @@
+.configs-container {
+	position:relative;
+	display:block;
+}
+
+.setup-container {
+	position:relative;
+	display:block;
+
+	max-width:30%;
+	padding:10px;
+
+	font-family:Verdana, sans-serif;
+	font-size:18px;
+
+	background-color:#FFF695;
+
+	border:1px solid black;
+	border-radius:5px;
+
+	margin-bottom:20px;
+}
+
+.setup-container:last-child {
+	margin-bottom:0px;
+}

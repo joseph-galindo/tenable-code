@@ -1,6 +1,7 @@
 //setup requires
 const express = require("express");
 const body_parser = require("body-parser");
+const path = require("path");
 const port = 3000;
 
 //setup express server
@@ -15,9 +16,27 @@ app.use(express.static(__dirname));
 
 //-----BACKEND CODE BEGINS-----//
 
+var payload = {
+	"configurations": [
+		{
+			"name": "host1",
+			"hostname": "nessus-ntp.lab.com",
+			"port": 1241,
+			"username": "toto"
+		},
+		{
+			"name": "host2",
+			"hostname": "nessus-xml.lab.com",
+			"port": 3384,
+			"username": "admin"
+		}
+	]
+};
+
 //set up a router for incoming requests
 var router = express.Router();
 
+//these router request paths are appended to the request paths that the express server directs to this router
 router.get('/', function(theReq, theRes) {
 	theRes.json({
 		message: 'root message'
@@ -30,7 +49,8 @@ router.get('/request', function(theReq, theRes) {
 
 		if(isFinite(theReq.query.host)) {
 			theRes.json({
-				message: 'Successful download request!'
+				message: 'Successful download request!',
+				data: payload
 			});
 		} else {
 			theRes.json({
@@ -56,21 +76,21 @@ app.use('/download', router);
 //This code handles intercepting URL requests and forwarding along the correct HTML files to be displayed
 //in the user's browser
 
-app.get('/', function(theReq, theRes) {
-	theRes.sendFile(__dirname + '/index.html');
-});
+// app.get('/', function(theReq, theRes) {
+// 	theRes.sendFile(path.join(__dirname + '/index.html'));
+// });
 
-app.get('/req1', function(theReq, theRes) {
-	theRes.sendFile(__dirname + '/req1/index.html');
-});
+// app.get('/req1', function(theReq, theRes) {
+// 	theRes.sendFile(path.join(__dirname + '/req1/index.html'));
+// });
 
-app.get('/req2', function(theReq, theRes) {
-	theRes.sendFile(__dirname + '/req2/index.html');
-});
+// app.get('/req2', function(theReq, theRes) {
+// 	theRes.sendFile(path.join(__dirname + '/req1/index.html'));
+// });
 
-app.get('/req3', function(theReq, theRes) {
-	theRes.sendFile(__dirname + '/req3/index.html');
-});
+// app.get('/req3', function(theReq, theRes) {
+// 	theRes.sendFile(path.join(__dirname + '/req3/index.html'));
+// });
 
 //-----FRONTEND CODE ENDS-----//
 

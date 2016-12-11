@@ -10,7 +10,7 @@ __Build instructions__
    * `http://localhost:3000/req1`  
    * `http://localhost:3000/req2`  
    * `http://localhost:3000/req3`  
-5. When finished, end the running node script from step 3 in your terminal of choice.  
+5. When finished, end the running node script from step 3 in your terminal of choice with ctrl+c.  
 
 __Question 5 Answer:__  
 
